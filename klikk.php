@@ -1,16 +1,15 @@
 <?php
 // © @Ayusman-Bieb
 
-
 #--------------------------#
 $pid = $_GET["id"];
 if($pid !=""){
 #$pid = "6269846410001";
-$hlink ="https://edge.api.brightcove.com/playback/v1/accounts/6132741238001/videos/$pid";
+$klink ="https://edge.api.brightcove.com/playback/v1/accounts/6132741238001/videos/$pid";
 
 $curl2 = curl_init();
 curl_setopt_array($curl2, array(
-  CURLOPT_URL => $hlink,
+  CURLOPT_URL => $klink,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_FOLLOWLOCATION => true,
@@ -46,15 +45,13 @@ $thumbnail = $result['thumbnail'];
 
 $codecs = $result['sources'][0]['codecs'];
 $hls = $result['sources'][0]['src'];
-#echo $poster;
-#echo $thumbnail;
 
-$apii = array("created_by" => "Ayusman Bieb", "name" => $name, "id" => $id, "account_id" => $account_id, "published_at" => $published_at, "poster" => $poster, "thumbnail" => $thumbnail, "codecs" => $codecs, "hls" => $hls);
+$success = array("created_by" => "Ayusman Bieb", "name" => $name, "id" => $id, "account_id" => $account_id, "published_at" => $published_at, "poster" => $poster, "thumbnail" => $thumbnail, "codecs" => $codecs, "hls" => $hls);
 
-$api =json_encode($apii, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+$data =json_encode($success, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 header("X-UA-Compatible: IE=edge");
 header("Content-Type: application/json");
-echo $api;
+echo $data;
 
 }
 else{
